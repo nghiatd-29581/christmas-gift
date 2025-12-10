@@ -1,3 +1,4 @@
+Muốn thấy rõ câu thư mục, trên web github hãy chọn chế độ CODE thay vì REVIEW
 Thực hiện tải node về máy tính
  https://nodejs.org/en/download
 
@@ -57,4 +58,5 @@ Lệnh CMD:
 ├── package.json
 ├── middleware.js                 # quản lý phần authen
 └── README.md
+
 
