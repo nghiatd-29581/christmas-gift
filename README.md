@@ -26,6 +26,8 @@ Lệnh CMD:
 │   ├── page.js                    # Trang chủ
 │   ├── create/
 │   │   └── page.js                # Trang tạo quà
+│   ├── login/
+│   │   └── page.js                # Trang đăng nhập
 │   ├── open/
 │   │   └── page.js                # Trang mở quà
 │   ├── globals.css
@@ -33,7 +35,7 @@ Lệnh CMD:
 │       ├── gifts/
 │       │   └── route.js           # API tạo quà
 │       └── random-gift/
-│       |    └── route.js           # API lấy quà ngẫu nhiên
+│       |    └── route.js          # API lấy quà ngẫu nhiên
 │       ├── login/
 │       │   └── route.js           # API đăng nhập
 │       └── logout/
@@ -54,9 +56,9 @@ Lệnh CMD:
 ├── next.config.js
 ├── tailwind.config.js
 ├── jsconfig.json
-├── postcss.config.js               # Hỗ trợ load goabl.css và tailwind, file này rất quan trọng nếu không có sẽ bị lỗi CSS
+├── postcss.config.js              # Hỗ trợ load goabl.css và tailwind, file này rất quan trọng nếu không có sẽ bị lỗi CSS
 ├── package.json
-├── middleware.js                 # quản lý phần authen
+├── middleware.js                  # quản lý phần authen
 └── README.md
 
 
