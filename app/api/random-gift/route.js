@@ -26,6 +26,20 @@ export async function GET() {
       )
     }
 
+    // Broadcast event to all listeners (for /result page)
+    const { error: broadcastError } = await supabase
+      .from('gift_events')
+      .insert({
+        gift_code: gift[0].gift_code,
+        message: gift[0].message,
+        event_type: 'opened'
+      })
+
+    if (broadcastError) {
+      console.error('Broadcast error:', broadcastError)
+      // Don't fail the request if broadcast fails
+    }
+
     return NextResponse.json({
       success: true,
       gift: {
@@ -93,6 +107,19 @@ async function fallbackRandomGift() {
       console.log('Gift was already opened by another request, retrying...')
       // Recursively try again
       return fallbackRandomGift()
+    }
+
+    // Broadcast event
+    const { error: broadcastError } = await supabase
+      .from('gift_events')
+      .insert({
+        gift_code: updatedGift.gift_code,
+        message: updatedGift.message,
+        event_type: 'opened'
+      })
+
+    if (broadcastError) {
+      console.error('Broadcast error:', broadcastError)
     }
 
     return NextResponse.json({
