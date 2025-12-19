@@ -34,6 +34,7 @@ export default function OpenGift() {
 
       const response = await fetch('/api/random-gift')
       const data = await response.json()
+      console.log(data)
 
       if (!response.ok) {
         if (data.noGifts) {
@@ -177,6 +178,16 @@ export default function OpenGift() {
                   {gift.gift_code}
                 </p>
                 
+                <div className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent my-4" />
+
+                {/* Gift Name */}
+                <div className="bg-white/5 rounded-xl p-6">
+                  <p className="text-sm text-white/70 mb-2">Tên người tặng</p>
+                  <p className="text-lg text-white leading-relaxed whitespace-pre-wrap">
+                    {gift.name}
+                  </p>
+                </div>
+
                 <div className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent my-4" />
                 
                 {/* Gift Message */}

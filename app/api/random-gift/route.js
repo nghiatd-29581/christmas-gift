@@ -32,7 +32,8 @@ export async function GET() {
       .insert({
         gift_code: gift[0].gift_code,
         message: gift[0].message,
-        event_type: 'opened'
+        event_type: 'opened',
+        name: gift[0].name
       })
 
     if (broadcastError) {
@@ -45,6 +46,7 @@ export async function GET() {
       gift: {
         gift_code: gift[0].gift_code,
         message: gift[0].message,
+        name: gift[0].name
       },
     })
   } catch (error) {
@@ -79,7 +81,7 @@ async function fallbackRandomGift() {
     // Get ONE random gift with offset
     const { data: gifts, error: fetchError } = await supabase
       .from('gifts')
-      .select('id, gift_code, message')  // Only select needed columns
+      .select('id, gift_code, message,name')  // Only select needed columns
       .eq('is_opened', false)
       .range(randomOffset, randomOffset)  // Get only 1 record at offset
       .limit(1)
@@ -115,7 +117,8 @@ async function fallbackRandomGift() {
       .insert({
         gift_code: updatedGift.gift_code,
         message: updatedGift.message,
-        event_type: 'opened'
+        event_type: 'opened',
+        name: updatedGift.name
       })
 
     if (broadcastError) {
@@ -127,6 +130,7 @@ async function fallbackRandomGift() {
       gift: {
         gift_code: updatedGift.gift_code,
         message: updatedGift.message,
+        name: updatedGift.name
       },
     })
   } catch (error) {

@@ -9,11 +9,21 @@ function generateGiftCode() {
 
 export async function POST(request) {
   try {
-    const { message } = await request.json()
+    const {postData} = await request.json()
+    const  message  =  postData.message
+    const  name  =  postData.name
 
     if (!message || message.trim().length === 0) {
       return NextResponse.json(
         { error: 'Message is required' },
+        { status: 400 }
+      )
+    }
+
+     if (!name || name.trim().length === 0) 
+    {
+      return NextResponse.json(
+        { error: 'Name is required' },
         { status: 400 }
       )
     }
@@ -53,6 +63,7 @@ export async function POST(request) {
           gift_code: giftCode,
           message: message.trim(),
           is_opened: false,
+          name : name.trim()
         },
       ])
       .select()

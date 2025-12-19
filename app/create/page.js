@@ -12,6 +12,7 @@ export default function CreateGift() {
   const [isLoading, setIsLoading] = useState(false)
   const [giftCode, setGiftCode] = useState(null)
   const [error, setError] = useState(null)
+  const [name, setName] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,12 +20,16 @@ export default function CreateGift() {
     setIsLoading(true)
 
     try {
+      const postData = {
+        message: message,
+        name:name
+      }
       const response = await fetch('/api/gifts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ postData }),
       })
 
       const data = await response.json()
@@ -45,6 +50,7 @@ export default function CreateGift() {
     setMessage('')
     setGiftCode(null)
     setError(null)
+    setName('')
   }
 
   return (
@@ -73,6 +79,21 @@ export default function CreateGift() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-xs sm:text-sm font-medium mb-2 text-white/90"
+                >
+                  Tên bạn:
+                </label>
+                <textarea
+                id='name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="glass-input resize-none"
+                required
+                ></textarea>
+              </div>
               <div>
                 <label 
                   htmlFor="message"
